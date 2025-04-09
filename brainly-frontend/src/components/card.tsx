@@ -1,11 +1,12 @@
 import { ShareIcon } from "./Icons/share";
-
+import { RedirectIcon } from "./Icons/redirect";
 interface CardProps {
     title : string,
     link : string,
-    type : "YouTube" | "Twitter"
+    type : "YouTube" | "Twitter",
+    description : string,
 }
-export function Card({title , link,type}:CardProps) {
+export function Card({title , link,type,description}:CardProps) {
   return (
     <div className="p-8 bg-white rounded-md border border-slate-200 max-w-72 min-h-48 min-w-72">
       {/* Header Section with Icons & Title */}
@@ -22,13 +23,15 @@ export function Card({title , link,type}:CardProps) {
         <div className="flex items-center">
           <div className="pr-2 text-gray-500">
             <a href={link} target="_blank" >
-                <ShareIcon size="md" />
+                {<RedirectIcon size="md" />}
+                
             </a>
           </div>
           <div className="text-gray-500">
             <ShareIcon size="md" />
           </div>
         </div>
+        
       </div>
 
       {/* Embedded YouTube Video */}
@@ -48,6 +51,7 @@ export function Card({title , link,type}:CardProps) {
         </blockquote>}
         
       </div>
+      <div className="pt-4 text-sm text-gray-700 flex justify-center">{description}</div>
     </div>
   );
 }

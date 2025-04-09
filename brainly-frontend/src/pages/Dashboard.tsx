@@ -60,8 +60,8 @@ export function Dashboard() {
                 {/* Content Section */}
                 <div className="flex gap-4 flex-wrap">
                     {contents.length > 0 ? (
-                        contents.map(({ type, link, title }, index) => {
-                            console.log("Card Data:", { type, link, title });
+                        contents.map(({ type, link, title ,description}, index) => {
+                            console.log("Card Data:", { type, link, title ,description});
 
                             // Ensure all values are defined before rendering
                             if (!type || !link || !title) {
@@ -75,6 +75,7 @@ export function Dashboard() {
                                     type={type.toLowerCase() === "youtube" ? "YouTube" : "Twitter"}
                                     link={link}
                                     title={title} 
+                                    description={description}
                                 />
                             );
                         })

@@ -15,6 +15,7 @@ export function CreateComponentModal({ open, onClose }) {
 
     const titleRef = useRef<HTMLInputElement | null>(null);
     const linkRef = useRef<HTMLInputElement | null>(null);
+    const descriptionRef = useRef<HTMLInputElement | null>(null);
     const [type, setType] = useState(ContentType.Youtube);
 
     // Function to reset input fields
@@ -28,6 +29,7 @@ export function CreateComponentModal({ open, onClose }) {
         try {
             const title = titleRef.current?.value;
             const link = linkRef.current?.value;
+            const description = descriptionRef.current?.value;
 
             if (!title || !link) {
                 alert("Title and Link are required!");
@@ -37,7 +39,8 @@ export function CreateComponentModal({ open, onClose }) {
             const response = await axios.post(`${BACKEND_URL}/api/v1/content`, {
                 link,
                 title,
-                type
+                type,
+                description,
             }, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -75,6 +78,7 @@ export function CreateComponentModal({ open, onClose }) {
                     <div>
                         <Input ref={titleRef} placeholder={"Title"} />
                         <Input ref={linkRef} placeholder={"Link"} />
+                        <Input ref={descriptionRef} placeholder={"Description"}/>
                     </div>
 
                     {/* Type Selection */}
